@@ -39,6 +39,7 @@ export default function Home() {
             </a>{" "}
             center.
           </p>
+          <ModeToggle />
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <a

@@ -90,7 +90,7 @@ export function UserMenu({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
+      <DropdownMenuTrigger 
         className={cn(className)}
         render={
           variant === "compact" ? (

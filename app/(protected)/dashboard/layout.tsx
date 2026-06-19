@@ -1,13 +1,18 @@
-import {requireAuth} from "@/features/auth/actions";
-export default async function ProtectedLayout({
-    children,
+
+import { requireAuth } from "@/features/auth/actions";
+import { DashboardShell } from "@/features/dashboard/components/dashboard-shell";
+
+
+export default async function DashboardLayout({
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    await requireAuth();
-    return (
-        <div className="flex min-h-full flex-1 flex-col items-center justify-center bg-muted/40 px-4 py-12">
-            <div className="w-full max-w-sm">{children}</div>
-        </div>
-        );
+  const session = await requireAuth();
+
+  return (
+    <DashboardShell user={session.user} plan="Pro">
+      {children}
+    </DashboardShell>
+  );
 }

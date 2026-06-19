@@ -6,10 +6,21 @@ export const auth = betterAuth({
    database: prismaAdapter(prisma, {
         provider: "postgresql",
     }),
+      trustedOrigins: [
+    "https://gliding-multitask-grader.ngrok-free.dev",
+      ],
+
       socialProviders: { 
     github: { 
       clientId: process.env.GITHUB_CLIENT_ID as string, 
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string, 
+      mapProfileToUser:async (profile) => {
+        return {
+          email: profile.email?? `${profile.id}@github.com`,
+          name: profile.name??profile.login,
+          image: profile.avatar_url,
+        };
+      }
     }, 
   },
     plugins: [

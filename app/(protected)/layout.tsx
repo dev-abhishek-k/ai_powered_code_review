@@ -1,16 +1,8 @@
 import {requireAuth} from "@/features/auth/actions";
-import { Geist } from "next/font/google";
-
-const geist = Geist({
-  subsets: ["latin"],
-});export default async function ProtectedLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
+export default async function ProtectedLayout({children,}: {children: React.ReactNode;}) {
     await requireAuth();
     return (
-        <div className="flex min-h-full flex-1 flex-col items-center justify-center bg-muted/40 px-4 py-12">
+        <div className="flex  flex-1 flex-col  bg-muted/40 px-4 py-12">
             <div className="w-full max-w-sm">{children}</div>
         </div>
         );
